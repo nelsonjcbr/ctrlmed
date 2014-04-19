@@ -1,0 +1,26 @@
+<p>
+  <b>Data:</b>
+  <%=h @solexame.data %>
+</p>
+
+<p>
+  <b>Paciente:</b>
+  <%=h @solexame.paciente.nm_paciente %>
+</p>
+
+<p>
+  <b>Clínica/Laboratório:</b>
+  <%=h @solexame.clilab.nm %>
+</p>
+
+<p>
+<table>
+<% @solexame.solexameis.each do |r| %>
+     <tr>
+     <td><%= r.exame.descricao %></td>
+     </tr>
+<% end %>
+</table>
+
+<%= link_to 'Voltar', @solexame.paciente, :controller => :pacientes %> |
+<%= link_to 'Versão para Imprimir', "/impsolexame/show/#{@solexame.id}", :popup => ['new_window', 'height=300,width=600'] %>

@@ -1,0 +1,24 @@
+<h1>Listando medicamentos</h1>
+
+<table>
+  <tr>
+    <th>Descrição</th>
+    <th>Dose</th>
+    <th>Viaaplic</th>
+  </tr>
+
+<% for medicamento in @medicamentos %>
+  <tr>
+    <td><%=h medicamento.descricao %></td>
+    <td><%=h medicamento.dose %></td>
+    <td><%=h medicamento.viaaplic.descricao %></td>
+    <td><%= link_to 'Mostrar', medicamento %></td>
+    <td><%= link_to 'Deletar', edit_medicamento_path(medicamento) %></td>
+    <td><%= link_to 'Excluir', medicamento, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo medicamento', new_medicamento_path %>

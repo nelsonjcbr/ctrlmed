@@ -1,0 +1,59 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<p>
+  <%=h @solexame.paciente.nm_paciente %>
+</p>
+<br>
+<p><%=h @solexame.clilab.nm %>
+</p>
+<p>
+<table>
+<% @solexame.solexameis.each do |r| %>
+     <tr>
+     <td><%= r.exame.descricao %></td>
+     </tr>
+     <tr>
+     <td>&nbsp &nbsp &nbsp &nbsp <%= r.obs %></td>
+     </tr>
+     <tr>&nbsp </tr>
+<% end %>
+</table>
+<% (10-@solexame.solexameis.size).times { %>
+<br>
+<%  } %>
+<% mes =    case @solexame.data.month
+            when 1
+                'Janeiro'
+            when 2
+                'Fevereiro'
+            when 3
+                'Março'
+            when 4
+                'Abril'
+            when 5
+                'Maio'
+            when 6
+                'Junho'
+            when 7
+                'Julho'
+            when 8
+                'Agosto'
+            when 9
+                'Setembro'
+            when 10
+                'Outubro'
+            when 11
+                'Novembro'
+            when 12
+                'Dezembro'
+            end
+%>
+<p>
+  &nbsp &nbsp &nbsp Joaçaba, <%=h @solexame.data.day.to_s + ' de ' + mes + ' de ' + @solexame.data.year.to_s + '.' %>
+</p>

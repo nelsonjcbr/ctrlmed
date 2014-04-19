@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Ctrlmed</title>
+    <%= stylesheet_link_tag "ctrlmed" %>
+    <%= stylesheet_link_tag "scaffold" %>
+    <%= javascript_include_tag :defaults %>
+ </head>
+  <body>
+    <div  id="aviso"><p><%= flash[:notice] %></p></div>
+
+    <div id="relreceita"><%= yield %></div>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<h1>Lista clínicas e laboratórios</h1>
+
+<table>
+  <tr>
+    <th>Nome Clínica/Laboratório</th>
+  </tr>
+
+<% for clilab in @clilabs %>
+  <tr>
+    <td><%=h clilab.nm %></td>
+    <td><%= link_to 'Mostrar', clilab %></td>
+    <td><%= link_to 'Alterar', edit_clilab_path(clilab) %></td>
+    <td><%= link_to 'Excluir', clilab, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo registro', new_clilab_path %>

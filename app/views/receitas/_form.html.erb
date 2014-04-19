@@ -1,0 +1,27 @@
+<h1><%= titulo %> receita</h1>
+
+<% form_for(@receita) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.label :paciente %><br />
+    <%= f.select :paciente_id, @pacientes %>
+  </p>
+  <p>
+  <div id="receitais">
+    <%= render :partial => "receitai", :collection => @receita.receitais %>
+  </div>
+    <%= add_receitais_link "Adiciona Medicamento" %>
+</p>
+<p>
+    <%= f.submit nome_botao %>
+  </p>
+<% end %>
+<div id="padrao_doses">
+<h2>Dose Padrao: </h2>
+</div>
+<%= link_to 'Volta', @receita.paciente %>

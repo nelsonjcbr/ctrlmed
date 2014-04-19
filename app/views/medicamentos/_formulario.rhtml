@@ -1,0 +1,21 @@
+<h1><%= :titulo %> medicamento</h1>
+
+<% form_for(@medicamento) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :descricao %><br />
+    <%= f.text_field :descricao %>
+  </p>
+  <p>
+    <%= f.label :dose %><br />
+    <%= f.text_field :dose %>
+  </p>
+  <p>
+    <%= f.label :viaaplic %><br />
+    <%= f.select :viaaplic_id, @vias, :prompt => '...' %>
+  </p>
+  <p>
+    <%= f.submit nome_botao %>
+  </p>
+<% end %>

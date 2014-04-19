@@ -1,0 +1,22 @@
+<p>
+  <b>Data:</b>
+  <%=h @receita.data %>
+</p>
+
+<p>
+  <b>Paciente:</b>
+  <%=h @receita.paciente.nm_paciente %>
+</p>
+<p>
+<table>
+<% @receita.receitais.each do |r| %>
+     <tr>
+     <td><%= r.medicamento.descricao %></td>
+     <td><%= r.dose %></td>
+     <td><%= r.qtde %></td>
+     </tr>
+<% end %>
+</table>
+
+<%= link_to 'Voltar', @receita.paciente, :controller => :pacientes %> |
+<%= link_to 'Versão para Imprimir', "/impreceita/show/#{@receita.id}", :popup => ['new_window', 'height=300,width=600'] %>

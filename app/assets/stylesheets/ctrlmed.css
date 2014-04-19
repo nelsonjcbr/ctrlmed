@@ -1,0 +1,256 @@
+/* cabecalho */
+#cabecalho {
+    color: #314BA1;
+  background-color: #ccffcc;
+  background-color: #ffffcc;
+}
+
+#cabecalho-centro {
+  position:absolute;
+  top:1em;
+  left:50%;
+  font-size:24px;
+  font-weight:bold;
+  text-align:center;
+  padding-top:1em;
+  font-style:italic;
+  padding-left:0;
+  padding-right:0;
+
+  width:715px;
+  margin-left: -357px;
+}
+
+#logado {
+  position:absolute;
+  right:2.4em;
+  top:1em;
+  color: #ff9933;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+
+h1 {
+    background-color: white;
+    color: #ff9933;
+    padding: 15px 10px 15px;
+    margin: 0;
+  }
+
+/* Menu superior */
+ul#menu {
+    padding: 5px 0 8px 10px;
+    margin: 0;
+    list-style:  none;
+    border-bottom: 1px solid black;
+    background-color: #0099ff;
+    font-weight: bold;
+    color: #fbf2cd;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+
+ul#menu li {
+    display: inline;
+    padding-right: 15px;
+  }
+
+
+ul#menu li:before {
+    content: "» ";
+  }
+
+.menu_superior A:visited { color: white;
+  font-weight: bold;
+  font-size: 13px;
+}
+.menu_superior A:link { color: #ff6600;
+  font-weight: bold;
+}
+.menu_superior A:hover { color: blue; background-color:#ff6633; }
+
+/* Menu inferior - administracao */
+ul#rodape {
+    padding: 5px 0 8px 10px;
+    margin: 0;
+    list-style: none;
+    border-bottom: 1px solid black;
+    background-color: #FFC9BA;
+  }
+
+
+ul#rodape li {
+    display: inline;
+    padding-right: 15px;
+  }
+
+
+ul#rodape li:before {
+    content: "» ";
+  }
+
+/* aaaa */
+#contents {
+    margin: 20px;
+    background-color: write;
+    /* width: 500px;*/
+    margin-bottom: 30px;
+}
+
+#dolado {
+    border: 1px solid #000;
+    float: right;
+    width: 250px;
+    background-color: yellow;
+  }
+
+
+#contents h1 {
+    margin: 0 0 20px;
+    padding: 0;
+    background-color: transparent;
+    color: black;
+  }
+
+#cabeca_table th, td {
+    text-align: right;
+    background-color: #f0f0f0;
+}
+
+
+#cabeca_table th {
+    background-color: #ddd;
+    color: grey;
+  }
+
+th, td {
+    padding: 5px;
+    text-align: left;
+    background-color: #f0f0f0;
+  }
+
+
+th {
+    background-color: #ddd;
+    color: grey;
+  }
+
+
+
+#notice {
+    border: 2px solid red;
+    padding: 1em;
+    margin-botton: 2em;
+    background-color: #f0f0f0;
+    font: bold smaller sans-serif;
+  }
+
+#aviso {
+  font: bold smaller sans-serif;
+  font-size: 14px;
+  color: red;
+  margin-left: 2em;
+}
+
+
+.resizable-textarea textarea {
+    display:block;
+    margin-bottom:0pt;
+    width:50%;
+    height: 20%;
+  }
+
+
+textarea {
+    display:block;
+    margin-bottom:0pt;
+    width: 100%;
+    height: 20%;
+  }
+/*    color: white; */
+
+/* empresa */
+#esquerda {
+/*  position:absolute;
+    right:2.4em;
+    top:1em; */
+  float: left;
+  /*margin-right:20pt;*/
+}
+
+#direita {
+}
+
+legend {
+    color: #ff6633;
+    /* padding: 15px 10px 15px;
+    margin: 0; */
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: larger;
+}
+
+fieldset {
+    /*color: #ff6633;*/
+    /* padding: 15px 10px 15px;
+    margin: 0; */
+
+  background-color: #f2f2f2;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #ffffff;
+}
+
+#presence {float: left; position: fixed; display: block; width: 100%; bottom: 0; left: 0; z-index: 9; height: 26px}
+#presence.full {margin-right: 0; margin-left: 0; width: 100%}
+#presence.full #presence-ui {margin-right: 1em; margin-left: 1em; background-color: #FFC9BA; background-image: url(/images/header_bkg.gif) repeat-x; border-left: 1px solid #ccc; border-right: 1px solid #ccc; height: 26px}
+#presence-bar {float: right}
+.presence-section {float: left; padding-left: 2px; padding-right: 2px; position: relative; border-top: 1px solid #ccc; border-left: 1px solid #ccc; padding-top: 4px; width: 120px; height:21px}
+.presence-section img {padding-bottom: 3px}
+.presence-bar-text {height:100%; display: block; font-weight: bold}
+.presence-section:hover {background-color: #fff}
+.presence-section:hover .presence-bar-text {text-decoration: underline}
+.presence-section-active {background-color: #fff !important; border-top: 1px solid #fff !important; border-bottom: 1px solid #ccc !important}
+.presence-section-pending {background-color: #ff9900 !important}
+.presence-popup {bottom: 26px; padding: 0; margin: 0; position: absolute; margin-left: -129px; z-index: 10; display: block; width: 250px; background-color: #fff; border-left: 1px solid #ccc; border-right: 1px solid #ccc; border-top: 1px solid #ccc}
+.presence-chat-area {max-height: 500px; overflow: auto}
+.presence-toggle {cursor: pointer}
+.presence-user-row {padding: 2px}
+.presence-user-row a {font-size: 12px}
+.presence-user-row img {vertical-align: top}
+.presence-user-row-idle {font-style: italic}
+.presence-user-row-offline {color: #999; font-style: italic}
+.presence-info {font-weight: bold; padding-right: 0.4em; vertical-align: top; font-size: 13px; background-color: #f6f6f6}
+.presence-info-other {}
+.presence-info-mine {}
+
+#quadroa {
+    padding-right: 5em;
+    float: left;
+    background-image: url(../images/tabright.icb);
+}
+
+#quadrob {
+    float: left;
+    padding: 1em;
+}
+
+#relreceita {
+    margin: 20px;
+    background-color: write;
+    /* width: 500px;*/
+    #margin-bottom: 30px;
+}

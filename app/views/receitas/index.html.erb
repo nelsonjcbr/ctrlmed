@@ -1,0 +1,22 @@
+<h1>Lista de receitas</h1>
+
+<table>
+  <tr>
+    <th>Data</th>
+    <th>Paciente</th>
+  </tr>
+
+<% for receita in @receitas %>
+  <tr>
+    <td><%=h receita.data %></td>
+    <td><%=h receita.paciente.nm_paciente %></td>
+    <td><%= link_to 'Mostrar', receita %></td>
+    <td><%= link_to 'Editar', edit_receita_path(receita) %></td>
+    <td><%= link_to 'Deletar', receita, :confirm => 'Você tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova receita', new_receita_path %>

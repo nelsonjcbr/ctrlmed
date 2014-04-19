@@ -1,0 +1,42 @@
+<h1>Listando Padrões</h1>
+
+<table id='tabela'>
+  <tr>
+    <th>Campos</th>
+    <th>Valores Possíveis</th>
+  </tr>
+
+<% for padrao in @padraos %>
+    <%= render :partial => "lista", :locals => {:padrao, padrao} %>
+<% end %>
+</table>
+
+<br />
+
+<div id="target" class="green box">
+<% remote_form_for(@padrao) do |f| %>
+    Campo: <%= f.text_field :campo %><br>
+    Valores: <%= f.text_area :valores %><br>
+    <%= f.submit "Criar" %>
+<% end %>
+</div>
+
+<%= link_to 'Novo padrão', new_padrao_path %>
+
+<%= link_to_function "Opacity",
+    "new Effect.Opacity('target', {to:0.5})" %>
+<%= link_to_function "Scale",
+    "new Effect.Scale('target', 200)" %>
+<%= link_to_function "Move",
+    "new Effect.Move('target', {x:50,y:10})" %>
+<%= link_to_function "Parallel",
+    "new Effect.Parallel([
+      new Effect.Move('target', {x:50,y:10}),
+      new Effect.Opacity('target', {to:0.5})
+     ])" %>
+
+<% %w( Fade Appear Highlight Fold Pulsate SlideUp SlideDown
+       Shrink Grow Squish Shake DropOut SwitchOff Puff BlindUp
+       BlindDown ).each do |name| %>
+  <%= link_to_function name, "new Effect.#{name}('target')" %>
+<% end %>

@@ -1,0 +1,16 @@
+<h1><%= titulo %> clínica ou laboratório</h1>
+
+<% form_for(@clilab) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label 'Nome' %><br />
+    <%= f.text_field :nm %>
+  </p>
+  <p>
+    <%= f.submit nome_botao %>
+  </p>
+<% end %>
+
+<%= link_to 'Mostrar', @clilab %> |
+<%= link_to 'Voltar', clilabs_path %>

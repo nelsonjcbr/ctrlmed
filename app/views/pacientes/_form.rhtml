@@ -1,0 +1,121 @@
+<fieldset>
+<legend>Dados do Paciente (<%= titulo %>)</legend>
+<div id="esquerda">
+  
+  <% form_for(@paciente) do |f| %>
+    <%= f.error_messages %>
+    <div>
+    <table>
+      <p>
+        <tr>
+        <td><%= f.label 'Nome Paciente' %></td>
+        <td><%= f.text_field :nm_paciente, :size => '60' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Data Nascimento'  %></td>
+        
+        <td><%= f.text_field :dt_nascimento  %>
+        
+        <%= observe_field 'paciente_dt_nascimento',                       
+                    :frequency => 1,            
+                    :update    => 'idadeAjax', 
+                    :before    => "Element.show('loading')",  
+                    :complete  => "Element.hide('loading')",  
+                    :url       => {:action=>'idade', :only_path => false},
+                    :with      => "'dt_nascimento=' + encodeURIComponent(value)" %>
+
+          <DIV id='idadeAjax'>
+              Idade: <%= @paciente.idade %>
+          </DIV>
+        </td>
+      
+      </tr>
+      <tr>
+        <td><%= f.label 'Estado Civil' %></td>
+        <td><%= f.select :estado_civil, @estado_civis, :prompt=>'Selecione...' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Endereço' %></td>
+        <td><%= f.text_field :endereco, :size => '60' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label'Cidade' %></td>
+        <td><%= text_field_with_auto_complete :paciente, :cidade %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Profissão' %></td>
+        <td><%= f.text_field :profissao, :size => '60' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Fone' %></td>
+        <td><%= f.text_field :fone_casa, :size => '60' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Natural' %></td>
+        <td><%= f.text_field :e_mail, :size => '60' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Primeira consulta' %></td>
+        <td><%= f.text_field :dt_prim_consulta %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Situação' %></td>
+        <td><%= f.text_field :situacao %></td>
+      </tr>
+      <tr>
+        <td><%= f.label 'Encaminhado por' %></td>
+        <td><%= f.text_field :encaminhado_por, :size => '60' %></td>
+      </tr>
+    </table>
+  </div>
+    <div id="direita">
+    <fieldset>
+    <legend>Anamnese</legend>
+    <p>
+      <%= f.label 'Q.P./H.P.M.A.' %><br>
+      <%= f.text_area :obs1, :size => '70x3', :title => 'Campo 1 cadastrado nos parametros' %>
+    </p>
+    <p>
+      <%= f.label 'A.P./I.D.' %><br>
+      <%= f.text_area :obs2, :cols => "200",  :rows => "3", :title => 'Campo 2 cadastrado nos parametros' %>
+    </p>
+    <table>
+    <tr><th colspan=2>Antecedentes Familiares</th></tr>
+      <tr>
+      <td><%= f.label 'Pai' %></td>
+      <td><%= f.text_field :antec_pai, :size => '60' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Mãe' %></td>
+      <td><%= f.text_field :antec_mae, :size => '60' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Irmãos' %></td>
+      <td><%= f.text_field :antec_irmaos, :size => '60' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Cônjuge' %></td>
+      <td><%= f.text_field :antec_conjuge, :size => '60' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Filhos' %></td>
+      <td><%= f.text_field :antec_filhos, :size => '60' %></td>
+    </tr>
+  </tr>
+  </table>
+    <p>
+      <%= f.label 'E.F.' %><br>
+      <%= f.text_area :obs3, :size => '70x3', :title => 'Campo 3 cadastrado nos paramentros' %>
+    </p>
+    <p>
+      <%= f.label 'Conduta H.D.' %><br>
+      <%= f.text_area :obs4, :size => '70x3', :title => 'Campo 4 cadastrado nos parametros' %>
+    </p>
+    <p>
+      <%= f.label 'Evolução' %><br>
+      <%= f.text_area :obs5, :size => '70x15', :title => 'Campo 5 cadastrado nos parametros' %>
+    </p>
+    <%= f.submit nome_botao %>
+    </p>
+  </div>  
+<% end %>

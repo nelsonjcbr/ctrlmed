@@ -1,0 +1,16 @@
+<h1><%= titulo %> exame</h1>
+
+<% form_for(@exame) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :descricao %><br />
+    <%= f.text_area :descricao %>
+  </p>
+  <p>
+    <%= f.submit nome_botao %>
+  </p>
+<% end %>
+
+<%= link_to 'Mostrar', @exame %> |
+<%= link_to 'Voltar', exames_path %>

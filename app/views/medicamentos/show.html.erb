@@ -1,0 +1,18 @@
+<p>
+  <b>Descricao:</b>
+  <%=h @medicamento.descricao %>
+</p>
+
+<p>
+  <b>Dose:</b>
+  <%=h @medicamento.dose %>
+</p>
+
+<p>
+  <b>Viaaplic:</b>
+  <%=h @medicamento.viaaplic.descricao %>
+</p>
+
+
+<%= link_to 'Edit', edit_medicamento_path(@medicamento) %> |
+<%= link_to 'Back', medicamentos_path %>

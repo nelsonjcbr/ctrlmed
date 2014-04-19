@@ -1,0 +1,21 @@
+<fieldset>
+<legend>Configuração de Padrões (<%= titulo %>)</legend>
+<div id="esquerda">
+<p>Aqui são definidos padrões para alguns campos da tela</p>
+
+<% form_for(@padrao) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :campo %><br />
+    <%= f.text_field :campo %>
+  </p>
+  <p>
+    <%= f.label :valores %><br />
+    <%= f.text_area :valores %>
+  </p>
+  <p>
+    <%= f.submit nome_botao %>
+  </p>
+<% end %>
+</fieldset>

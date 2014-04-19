@@ -1,0 +1,3 @@
+page.insert_html :bottom, :receitais, :partial => 'receitai',
+                  :locals => { :receitai => @receitai, :i => params[:i] }
+page.replace :novo_item_link, :partial => 'novo_item_link', :locals => {:i => (params[:i].to_i + 1)}

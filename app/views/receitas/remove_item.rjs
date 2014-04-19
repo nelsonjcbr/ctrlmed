@@ -1,0 +1,1 @@
+page["receitai_#{params[:i]}"].remove

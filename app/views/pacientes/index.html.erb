@@ -1,0 +1,21 @@
+<head>
+  <style type="text/css"  media="screen">
+  </style>  
+</head>
+
+<h1>Listando Pacientes</h1>  
+
+<div id='quadroa'>
+  <%= form_tag ('/pacientes') do %>
+     Procura Paciente<br>
+     <%= text_field_tag :paciente_filtro, params[:paciente_filtro]%>
+     <%= image_submit_tag('magnifier.png') %>
+  <% end %>
+  <p>
+  <%= link_to 'Novo Paciente', new_paciente_path %>
+
+</div>
+
+<div id='quadrob'>
+  <%= render :partial => "lista" %>
+</div>

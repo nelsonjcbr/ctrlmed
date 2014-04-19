@@ -1,0 +1,132 @@
+<%= link_to 'Alterar', edit_paciente_path(@paciente) %> |
+<%= link_to 'Voltar', pacientes_path %> |
+<%= link_to 'Adicionar Receita', new_receita_path( :paciente => @paciente ) %> |
+<%= link_to 'Adicionar Solicitacao de Exame', new_solexame_path( :paciente => @paciente ) %>
+<table bgcolor="#ffffcc">
+  <tr>
+    <td><b>Paciente:</b> </td>
+    <td><h2><%= @paciente.nm_paciente %></h2></td>
+  </tr>
+  <tr>
+    <td><b>Data Nascimento:</b> </td>
+    <td><%= @paciente.dt_nascimento %></td>
+  </tr>
+  <tr>
+    <td><b>Estado Civil:</b> </td>
+    <td><%= @paciente.estado_civil %></td>
+  </tr>
+  <tr>
+    <td><b>Endereço:</b> </td>
+    <td><%= @paciente.endereco %></td>
+  </tr>
+  <tr>
+    <td><b>Cidade:</b> </td>
+    <td><%= @paciente.cidade %></td>
+  </tr>
+  <tr>
+    <td><b>Profissão/Empresa:</b> </td>
+    <td><%= @paciente.profissao %>
+        <%= @paciente.empresa %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Fone:</b> </td>
+    <td><%= @paciente.fone_casa %>&nbsp;
+        <%= @paciente.fone_empresa %>&nbsp;
+        <%= @paciente.celular %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Natural:</b> </td>
+    <td><%= @paciente.e_mail %></td>
+  </tr>
+  <tr>
+    <td><b>Primeira consulta:</b> </td>
+    <td><%= @paciente.dt_prim_consulta %></td>
+  </tr>
+  <tr>
+    <td><b>Situação:</b> </td>
+    <td><%= @paciente.situacao %></td>
+  </tr>
+  <tr>
+    <td><b>Encaminhado por:</b> </td>
+    <td><%= @paciente.encaminhado_por %></td>
+  </tr>
+  <tr><td colspan=2><h2>ANAMNESE</h2></td></tr>
+  <tr bgcolor=#ccffcc>
+    <td><b>Q.P./H.P.M.A.:</b> </td>
+    <td><%= @paciente.obs1 %></td>
+  </tr>
+  <tr>
+    <td><b>A.P./I.D.:</b> </td>
+    <td><%= @paciente.obs2 %></td>
+  </tr>
+  <tr bgcolor=#ccffcc>
+    <td><b>Antec.pai:</b> </td>
+    <td><%= @paciente.antec_pai %></td>
+  </tr>
+  <tr bgcolor=#ccffcc>
+    <td><b>Antec.mãe:<br>
+           Antec.pai:<br>
+           Antec.filhos:<br>
+           Antec.irmãos:<br>
+         Antec.cônjuge:</b>
+    </td>
+    <td valign="top">-<%= @paciente.antec_mae %><br>
+        -<%= @paciente.antec_pai %><br>
+        -<%= @paciente.antec_irmaos %><br>
+        -<%= @paciente.antec_filhos %><br>
+        -<%= @paciente.antec_conjuge %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>E.F.:</b> </td>
+    <td><%= @paciente.obs3 %></td>
+  </tr>
+  <tr bgcolor=#ccffcc>
+    <td><b>Conduta H.D.:</b> </td>
+    <td><%= @paciente.obs4 %></td>
+  </tr>
+  <tr>
+    <td><b>Evolução:</b> </td>
+    <td><%= @paciente.obs5 %></td>
+  </tr>
+</table>
+
+<h2>Receitas</h2>
+<table >
+<% @paciente.receitas.each do |r| %>
+  <tr>
+    <th><%= r.data %></th>
+    <th><%= link_to 'Mostrar', "/receitas/#{r.id}", :controller => :receitas %></th>
+    <th><%= link_to 'Alterar', edit_receita_path(r, :paciente => @paciente) %></th>
+    <th><%= link_to 'Excluir', r, :confirm => 'Você tem certeza que deseja excluir?', :controller => :receitas, :method => :delete %></th>
+  </tr>
+  <% r.receitais.each do |i| %>
+    <tr>
+    <td><%= i.medicamento.descricao + ' ' + i.dose %></td>
+    </tr>
+  <% end %>
+  <% end %>
+</table>
+<%= link_to 'Adicionar Receita', new_receita_path( :paciente => @paciente ) %> |
+
+<h2>Exames Solicitados</h2>
+<table >
+<% @paciente.solexames.each do |r| %>
+  <tr>
+    <th><%= r.data %></th>
+    <th><%= link_to 'Alterar', edit_solexame_path(r, :paciente => @paciente) %></th>
+    <th><%= link_to 'Excluir', r, :confirm => 'Você tem certeza que deseja excluir?', :controller => :solexames, :method => :delete %></th>
+  </tr>
+  <% r.solexameis.each do |i| %>
+    <tr>
+    <td><%= i.exame.descricao %></td>
+    </tr>
+  <% end %>
+  <% end %>
+</table>
+<%= link_to 'Adicionar Solicitacao de Exame', new_solexame_path( :paciente => @paciente ) %>
+
+<p><%= link_to 'Alterar Paciente', edit_paciente_path(@paciente) %> |
+<%= link_to 'Adicionar Receita', new_re

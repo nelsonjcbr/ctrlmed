@@ -1,0 +1,29 @@
+<h1><%= titulo %> Solicitação de Exame</h1>
+
+<% form_for(@solexame) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :data %><br />
+    <%= f.date_select :data %>
+  </p>
+  <p>
+    <%= f.label :paciente_id %><br />
+    <%= f.select :paciente_id, @pacientes %>
+  </p>
+  <p>
+    <%= f.label :clilab_id %><br />
+    <%= f.select :clilab_id, @clilabs %>
+  </p>
+  <p>
+  <div id="solexameis">
+    <%= render :partial => "solexamei", :collection => @solexame.solexameis %>
+  </div>
+    <%= add_solexameis_link "Adiciona Exame" %>
+</p>
+<p>
+    <%= f.submit nome_botao %>
+  </p>
+<% end %>
+
+<%= link_to 'Volta', @solexame.paciente  %>

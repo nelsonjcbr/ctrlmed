@@ -1,0 +1,19 @@
+<h1>Listando vias de aplicação</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for viaaplic in @viaaplics %>
+  <tr>
+    <td><%= viaaplic.descricao %></td>
+    <td><%= link_to 'Visualizar', viaaplic %></td>
+    <td><%= link_to 'Alterar', edit_viaaplic_path(viaaplic) %></td>
+    <td><%= link_to 'Excluir', viaaplic, :confirm => 'Confirma?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo via aplicação', new_viaaplic_path %>
