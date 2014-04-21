@@ -2,14 +2,14 @@
 <legend>Vias de aplicação (<%= titulo %>)</legend>
 <div id="esquerda">
   
-  <% form_for(@viaaplic) do |f| %>
-    <%= f.error_messages %>
+  <%= form_for(@viaaplic) do |f| %>
+   <%= render "shared/error_messages", :target => @viaaplic %>  
     <div>
     <table>
       <p>
         <tr>
         <td><%= f.label 'Descrição' %></td>
-        <td><%= f.text_field :descrição, :size => '60' %></td>
+        <td><%= f.text_field :descricao, :size => '60' %></td>
       </tr>
     </table>
   <p>

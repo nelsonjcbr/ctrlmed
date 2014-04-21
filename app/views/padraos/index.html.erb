@@ -5,10 +5,11 @@
     <th>Campos</th>
     <th>Valores Possíveis</th>
   </tr>
+  
+  <% @padraos.each do |padrao| -%>
+      <%= render partial: "lista", locals: { padrao: padrao } %>
+  <% end -%>
 
-<% for padrao in @padraos %>
-    <%= render :partial => "lista", :locals => {:padrao, padrao} %>
-<% end %>
 </table>
 
 <br />

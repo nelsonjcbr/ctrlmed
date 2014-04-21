@@ -33,6 +33,7 @@ group :doc do
 end
 
 gem 'will_paginate', '~> 3.0.5'
+gem 'rails4-autocomplete', '~> 1.0.7'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

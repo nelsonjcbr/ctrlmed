@@ -1,85 +1,77 @@
 class ViaaplicsController < ApplicationController
-  # GET /viaaplics
-  # GET /viaaplics.xml
-  def index
-    @viaaplics = Viaaplic.find(:all)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @viaaplics }
-    end
+  before_action :set_viaaplic, only: [:show, :edit, :update, :destroy]
+
+    # GET /viaaplics
+  # GET /viaaplics.json
+  def index
+    @viaaplics = Viaaplic.all
   end
 
   # GET /viaaplics/1
-  # GET /viaaplics/1.xml
+  # GET /viaaplics/1.json
   def show
-    @viaaplic = Viaaplic.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @viaaplic }
-    end
   end
 
   # GET /viaaplics/new
-  # GET /viaaplics/new.xml
   def new
     @viaaplic = Viaaplic.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @viaaplic }
-    end
   end
 
   # GET /viaaplics/1/edit
   def edit
-    @viaaplic = Viaaplic.find(params[:id])
   end
 
   # POST /viaaplics
-  # POST /viaaplics.xml
+  # POST /viaaplics.json
   def create
-    @viaaplic = Viaaplic.new(params[:viaaplic])
+    @viaaplic = Viaaplic.new(viaaplic_params)
 
     respond_to do |format|
       if @viaaplic.save
-        flash[:notice] = 'Viaaplic was successfully created.'
-        format.html { redirect_to(@viaaplic) }
-        format.xml  { render :xml => @viaaplic, :status => :created, :location => @viaaplic }
+        format.html { redirect_to @viaaplic, notice: 'Viaaplic was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @viaaplic }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @viaaplic.errors, :status => :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json { render json: @viaaplic.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /viaaplics/1
-  # PUT /viaaplics/1.xml
+  # PATCH/PUT /viaaplics/1
+  # PATCH/PUT /viaaplics/1.json
   def update
-    @viaaplic = Viaaplic.find(params[:id])
-
     respond_to do |format|
-      if @viaaplic.update_attributes(params[:viaaplic])
-        flash[:notice] = 'Viaaplic was successfully updated.'
-        format.html { redirect_to(@viaaplic) }
-        format.xml  { head :ok }
+      if @viaaplic.update(viaaplic_params)
+        format.html { redirect_to @viaaplic, notice: 'Viaaplic was successfully updated.' }
+        format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @viaaplic.errors, :status => :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.json { render json: @viaaplic.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /viaaplics/1
-  # DELETE /viaaplics/1.xml
+  # DELETE /viaaplics/1.json
   def destroy
-    @viaaplic = Viaaplic.find(params[:id])
     @viaaplic.destroy
-
     respond_to do |format|
-      format.html { redirect_to(viaaplics_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to viaaplics_url }
+      format.json { head :no_content }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_viaaplic
+      @viaaplic = Viaaplic.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def viaaplic_params
+      params.require(:viaaplic).permit(:descricao)
+      #params[:viaaplic]
+    end
+
 end

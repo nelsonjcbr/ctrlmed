@@ -1,23 +1,28 @@
 class PacientesController < ApplicationController
+
   before_filter :ler_estados_civis
   before_filter :ler_cidades
-  
-  # controller
-  def auto_complete_for_paciente_cidade
-    auto_complete_responder_for_cidade params[:paciente][:cidade]
-  end
 
-  protect_from_forgery :only => [:update, :delete, :create] # exclude the auto_complete method 
-  
+  before_action :set_paciente, only: [:show, :edit, :update, :destroy]
+ 
+  # controller
+  #def auto_complete_for_paciente_cidade
+  #  auto_complete_responder_for_cidade params[:paciente][:cidade]
+  #end
+
   # GET /pacientes
   # GET /pacientes.xml
   def index
     condicao ="id > 0"
     unless params[:paciente_filtro].nil? 
-      condicao += " and nm_paciente  ilike   '%#{params[:paciente_filtro]}%'" 
+      filtro = params[:paciente_filtro].gsub(/[ ]/, '%')
+      condicao += " and nm_paciente  ilike   '#{filtro}%'" 
     end
+    
+    puts params 
 
-    @pacientes = Paciente.paginate :page => params[:page], :order => 'nm_paciente', :conditions => condicao
+    @pacientes = Paciente.paginate(:page => params[:page], :order => 'nm_paciente')
+                         .where(condicao)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,42 +33,31 @@ class PacientesController < ApplicationController
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
-    @paciente = Paciente.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @paciente }
-    end
   end
 
   # GET /pacientes/new
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @paciente }
-    end
   end
 
   # GET /pacientes/1/edit
   def edit
-    @paciente = Paciente.find(params[:id])
   end
 
   # POST /pacientes
   # POST /pacientes.xml
   def create
-    @paciente = Paciente.new(params[:paciente])
+    @paciente = Paciente.new(paciente_params)
 
     respond_to do |format|
       if @paciente.save
         flash[:notice] = 'Paciente was successfully created.'
         format.html { redirect_to(@paciente) }
-        format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
+        format.json  { render action: 'show', :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
+        format.xml  { render :json => @paciente.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -71,16 +65,13 @@ class PacientesController < ApplicationController
   # PUT /pacientes/1
   # PUT /pacientes/1.xml
   def update
-    @paciente = Paciente.find(params[:id])
-
     respond_to do |format|
-      if @paciente.update_attributes(params[:paciente])
-        flash[:notice] = 'Paciente was successfully updated.'
-        format.html { redirect_to(@paciente) }
-        format.xml  { head :ok }
+      if @paciente.update(paciente_params)
+        format.html { redirect_to @paciente, notice: 'Paciente alterado.' }
+        format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.json { render json: @paciente.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,12 +79,10 @@ class PacientesController < ApplicationController
   # DELETE /pacientes/1
   # DELETE /pacientes/1.xml
   def destroy
-    @paciente = Paciente.find(params[:id])
     @paciente.destroy
-
     respond_to do |format|
-      format.html { redirect_to(pacientes_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to pacientes_url }
+      format.json { head :no_content }
     end
   end
   
@@ -110,15 +99,13 @@ class PacientesController < ApplicationController
   protected
 
   def ler_estados_civis
-    @aux = Padrao.find(:all, :conditions => ['campo = ?', 'estado_civil'])
-    @aux = %w(Solteiro Casado Tico-Tico)
+    #@aux = Padrao.find.(:all, :conditions => ['campo = ?', 'estado_civil'])
+    @aux = %w(Solteiro Casado Viuvo Amasiado)
     @estado_civis = @aux
   end
 
   def ler_cidades
-    @cidades = Padrao.find(:first, 
-                          :select => [:valores],
-                          :conditions => ['LOWER(campo) = ? ', 'cidade' ]) 
+    @cidades = Padrao.select('valores').where(['LOWER(campo) = ? ', 'cidade' ]).first
   end
 
   private
@@ -136,5 +123,18 @@ class PacientesController < ApplicationController
     debugger
     render :inline => "<%= auto_complete_result(@cidadefiltro, 'valores') %>"
   end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_paciente
+      @paciente = Paciente.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def paciente_params
+      #params[:paciente]
+      params.require(:paciente).permit(:nm_paciente, :dt_nascimento, :estado_civil, :endereco, :cidade,
+        :profissao, :fone_casa, :e_mail, :dt_prim_consulta, :situacao, :encaminhado_por, :obs1, :obs2, :obs3, :obs4, :obs5,
+        :antec_pai, :antec_mae, :antec_irmaos, :antec_conjuge, :antec_filhos)
+    end
 
 end

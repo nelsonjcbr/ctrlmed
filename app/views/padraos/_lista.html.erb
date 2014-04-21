@@ -3,7 +3,7 @@
     <td><%=h padrao.valores %></td>
     <td><%= link_to 'Mostrar', padrao %></td>
     <td><%= link_to 'Alterar', edit_padrao_path(padrao) %></td>
-    <td><%= link_to_remote 'Excluir',   :url=>padrao_path(padrao),
+    <td><%= link_to_remote 'Excluir',   padrao,
                                         :confirm => 'Você realmente deseja excluir esse padrão?', 
                                         :method => :delete %>
     </td>
