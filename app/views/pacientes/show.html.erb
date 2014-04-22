@@ -9,7 +9,8 @@
   </tr>
   <tr>
     <td><b>Data Nascimento:</b> </td>
-    <td><%= @paciente.dt_nascimento %></td>
+    <td><%= @paciente.dt_nascimento %> - 
+      <b><%= @paciente.idade %></b></td>
   </tr>
   <tr>
     <td><b>Estado Civil:</b> </td>
@@ -43,6 +44,10 @@
   <tr>
     <td><b>Primeira consulta:</b> </td>
     <td><%= @paciente.dt_prim_consulta %></td>
+  </tr>
+  <tr>
+    <td><b>Ultima consulta:</b> </td>
+    <td><%= @paciente.dt_ult_consulta %></td>
   </tr>
   <tr>
     <td><b>Situação:</b> </td>
@@ -128,5 +133,4 @@
 </table>
 <%= link_to 'Adicionar Solicitacao de Exame', new_solexame_path( :paciente => @paciente ) %>
 
-<p><%= link_to 'Alterar Paciente', edit_paciente_path(@paciente) %> |
-<%= link_to 'Adicionar Receita', new_re
+<p><%= link_to 'Alterar Paciente', edit_paciente_path(@paciente) %>

@@ -1,7 +1,7 @@
 <h1><%= titulo %> exame</h1>
 
 <% form_for(@exame) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @exame %>  
 
   <p>
     <%= f.label :descricao %><br />

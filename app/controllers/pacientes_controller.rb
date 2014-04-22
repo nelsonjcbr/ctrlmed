@@ -19,10 +19,11 @@ class PacientesController < ApplicationController
       condicao += " and nm_paciente  ilike   '#{filtro}%'" 
     end
     
-    puts params 
-
-    @pacientes = Paciente.paginate(:page => params[:page], :order => 'nm_paciente')
+    @totalpacientes = Paciente.count
+    @pacientes = Paciente.paginate(:page => params[:page])
                          .where(condicao)
+                         .order(:nm_paciente)
+#                        .order(dt_ult_consulta: :desc)
 
     respond_to do |format|
       format.html # index.html.erb

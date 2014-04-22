@@ -1,7 +1,7 @@
 <h1><%= titulo %> Solicitação de Exame</h1>
 
 <% form_for(@solexame) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @solexame %>  
 
   <p>
     <%= f.label :data %><br />

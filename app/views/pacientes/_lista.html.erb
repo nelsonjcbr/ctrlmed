@@ -6,11 +6,11 @@
 
 <% for paciente in @pacientes %>
   <tr>
-    <td><%= paciente.nm_paciente %></td>
+    <td><%= link_to paciente.nm_paciente, edit_paciente_path(paciente) %></td>
     <td><%= link_to 'Visualizar', paciente %></td>
     <td><%= link_to 'Alterar', edit_paciente_path(paciente) %></td>
     <td><%= link_to 'Excluir', paciente, :confirm => 'Você tem certeza que deseja excluir?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
+<p>

@@ -1,7 +1,7 @@
 <h1><%= titulo %> clínica ou laboratório</h1>
 
 <% form_for(@clilab) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @clilab %>  
 
   <p>
     <%= f.label 'Nome' %><br />

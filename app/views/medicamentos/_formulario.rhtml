@@ -1,7 +1,7 @@
 <h1><%= :titulo %> medicamento</h1>
 
 <% form_for(@medicamento) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @medicamento %>  
 
   <p>
     <%= f.label :descricao %><br />

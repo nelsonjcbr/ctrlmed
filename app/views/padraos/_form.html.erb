@@ -4,7 +4,7 @@
 <p>Aqui são definidos padrões para alguns campos da tela</p>
 
 <% form_for(@padrao) do |f| %>
-  <%= f.error_messages %>
+   <%= render "shared/error_messages", :target => @padrao %>  
 
   <p>
     <%= f.label :campo %><br />
