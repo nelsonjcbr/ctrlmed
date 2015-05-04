@@ -2,18 +2,20 @@
 <legend>Vias de aplicação (<%= titulo %>)</legend>
 <div id="esquerda">
   
-  <%= form_for(@viaaplic) do |f| %>
+  <%= form_for(@viaaplic, html: { class: "form-horizontal", role: "form"} ) do |f| %>
    <%= render "shared/error_messages", :target => @viaaplic %>  
-    <div>
-    <table>
-      <p>
-        <tr>
-        <td><%= f.label 'Descrição' %></td>
-        <td><%= f.text_field :descricao, :size => '60' %></td>
-      </tr>
-    </table>
-  <p>
-    <%= f.submit nome_botao %>
-  </p>
-<% end %>
+    <div class="form-group">
+      <%= f.label :descricao, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :descricao, class: "form-control" %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit nome_botao, class: "btn btn-default" %>
+      </div>
+    </div>
+
+  <% end %>
 </fieldset>
