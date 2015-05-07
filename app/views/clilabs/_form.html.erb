@@ -1,16 +1,17 @@
-<h1><%= titulo %> clínica ou laboratório</h1>
-
 <% form_for(@clilab) do |f| %>
   <%= render "shared/error_messages", :target => @clilab %>  
 
-  <p>
+  <div class="field">
     <%= f.label 'Nome' %><br />
     <%= f.text_field :nm %>
-  </p>
-  <p>
+  </div>
+
+  <div class="actions">
     <%= f.submit nome_botao %>
-  </p>
+  </div>
 <% end %>
 
 <%= link_to 'Mostrar', @clilab %> |
 <%= link_to 'Voltar', clilabs_path %>
+
+  
