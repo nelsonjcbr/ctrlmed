@@ -1,29 +1,24 @@
-<h1><%= titulo %> Solicitação de Exame</h1>
+<h1><%= titulo %> Solicitação de Exames</h1>
 
-<% form_for(@solexame) do |f| %>
-  <%= render "shared/error_messages", :target => @solexame %>  
+<%= simple_form_for @solexame do |f| %>
 
-  <p>
-    <%= f.label :data %><br />
-    <%= f.date_select :data %>
-  </p>
-  <p>
-    <%= f.label :paciente_id %><br />
-    <%= f.select :paciente_id, @pacientes %>
-  </p>
-  <p>
-    <%= f.label :clilab_id %><br />
-    <%= f.select :clilab_id, @clilabs %>
-  </p>
-  <p>
-  <div id="solexameis">
-    <%= render :partial => "solexamei", :collection => @solexame.solexameis %>
-  </div>
-    <%= add_solexameis_link "Adiciona Exame" %>
-</p>
-<p>
-    <%= f.submit nome_botao %>
-  </p>
+  <%= f.select :paciente_id, @pacientes %>
+
+  <%= f.input :data, format: :default, label: 'Data da receita', html5: true, input_html: { class: 'input-large' } %>
+
+  <%= f.select :clilab_id, @clilabs %>
+
+  Itens= <%= @solexame.solexameis.count %>
+
+  <%= f.simple_fields_for :solexameis, @solexameis do |builder| %>
+    <%= render 'solexamei_fields', f: builder %>
+  <% end %>
+
+  <%= link_to_add_fields "Adiciona Item", f, :solexameis %>
+  <br>
+  <br>
+  <%= f.submit "Gravar", :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                solexames_path, :class => 'btn' %>
 <% end %>
 
-<%= link_to 'Volta', @solexame.paciente  %>

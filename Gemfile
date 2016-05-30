@@ -32,7 +32,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate-bootstrap', '1.0.1'
 gem 'rails4-autocomplete', '~> 1.0.7'
 
 # Use ActiveModel has_secure_password
@@ -47,6 +47,17 @@ gem 'rails4-autocomplete', '~> 1.0.7'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'byebug', group: [:development, :test]
+
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem "simple_form"
+#gem "delocalize" # Para formato de datas no input
+
+gem 'bootstrap-editable-rails'
+
+gem 'sdoc'
+
+gem 'breadcrumbs_on_rails'
+

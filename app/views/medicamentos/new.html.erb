@@ -1,3 +1,5 @@
-<%= render :partial => "formulario", :locals => { :titulo => 'Criando', :nome_botao => 'Gravar'} %>
-
-<%= link_to 'Voltar', medicamentos_path %>
+<%- model_class = Medicamento -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

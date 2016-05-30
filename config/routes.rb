@@ -1,4 +1,6 @@
 Med::Application.routes.draw do
+  resources :padraos
+
   get "welcome/index"
   resources :solexames
 
@@ -10,8 +12,6 @@ Med::Application.routes.draw do
   resources :medicamentos
 
   resources :viaaplics
-
-  resources :padraos
 
 #  map.resources :pacientes, :has_many => :receitas, :has_many => :receitais
   resources :pacientes, :has_many => :receitas

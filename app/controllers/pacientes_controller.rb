@@ -4,6 +4,9 @@ class PacientesController < ApplicationController
   before_filter :ler_cidades
 
   before_action :set_paciente, only: [:show, :edit, :update, :destroy]
+
+  add_breadcrumb "Home" , :root_path
+  add_breadcrumb "Pacientes", :pacientes_path
  
   # controller
   #def auto_complete_for_paciente_cidade
@@ -13,6 +16,7 @@ class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
   def index
+    #byebug
     condicao ="id > 0"
     unless params[:paciente_filtro].nil? 
       filtro = params[:paciente_filtro].gsub(/[ ]/, '%')
@@ -24,26 +28,24 @@ class PacientesController < ApplicationController
                          .where(condicao)
                          .order(:nm_paciente)
 #                        .order(dt_ult_consulta: :desc)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @pacientes }
-    end
   end
 
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
+    add_breadcrumb "show", pacientes_path, :title => "Volta para o index"
   end
 
   # GET /pacientes/new
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
+    add_breadcrumb "novo", pacientes_path, :title => "Volta para o index"
   end
 
   # GET /pacientes/1/edit
   def edit
+    add_breadcrumb "edit", pacientes_path, :title => "Volta para o index"
   end
 
   # POST /pacientes

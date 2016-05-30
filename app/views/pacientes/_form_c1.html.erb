@@ -1,0 +1,148 @@
+<div class = "panel panel-info">
+  <div class = "panel panel-heading">Dados do Paciente (<%= titulo %>)</div>
+
+  <div class = "panel panel-body">
+
+    <div class="container">
+
+      <%= form_for @paciente, :html => { :class => "form-horizontal"} do |f| %>
+
+      <%= render "shared/error_messages", :target => @paciente %>  
+
+      <div class="form-group">
+        <%= f.label 'Nome', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :nm_paciente, :class => "form-control input-lg" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Data Nascimento', class: "col-sm-2 control-label" %>
+        <div class="col-sm-3">
+          <%= f.text_field :dt_nascimento, :class => "form-control"  %>
+        </div>
+        <%= f.label 'Estado Civil', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= f.select :estado_civil, @estado_civis, :prompt=>'Selecione...' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Endereço', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :endereco, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label'Cidade', class: "col-sm-2 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :cidade, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Profissão', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :profissao, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Fone', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :fone_casa %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Natural', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :e_mail, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Primeira consulta', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :dt_prim_consulta %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Situação', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :situacao %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Encaminhado por', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :encaminhado_por, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :paciente_obs1, 'Q.P./H.P.M.A.', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :obs1, :size => '70x3', :title => 'Campo 1 cadastrado nos parametros', :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label "paciente_obs2", 'A.P./I.D.', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :obs2, :cols => "200",  :rows => "3", :title => 'Campo 2 cadastrado nos parametros', :class => "form-control" %>
+        </div>
+      </div>
+
+      Antecedentes Familiares
+      <div class="form-group">
+        <%= f.label 'Pai', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :antec_pai, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Mãe' , class: "col-sm-2 control-label"%>
+        <div class="col-sm-8">
+          <%= f.text_field :antec_mae, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Irmãos', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :antec_irmaos, :class => "form-control" %>
+        </div>  
+      </div>
+      <div class="form-group">
+        <%= f.label 'Cônjuge', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :antec_conjuge, :class => "form-control" %>
+        </div>
+      </div>      
+      <div class="form-group">
+        <%= f.label 'Filhos', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :antec_filhos, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label "paciente_obs3",'E.F', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :obs3, :size => '70x3', :title => 'Campo 3 cadastrado nos paramentros', :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label "paciente_obs4", 'Conduta H.D.', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :obs4, :size => '70x3', :title => 'Campo 4 cadastrado nos parametros', :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Evolução', class: "col-sm-2 control-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :obs5, :size => '70x15', :title => 'Campo 5 cadastrado nos parametros', :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    pacientes_path, :class => 'btn' %>
+      </div>
+      <% end %>
+    </div>  
+  </div>
+</div>

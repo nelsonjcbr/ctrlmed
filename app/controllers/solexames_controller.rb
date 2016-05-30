@@ -6,7 +6,6 @@ class SolexamesController < ApplicationController
   # GET /solexames
   # GET /solexames.xml
   def index
-    debugger
     @solexames = Solexame.find(:all)
 
     respond_to do |format|
@@ -29,7 +28,7 @@ class SolexamesController < ApplicationController
   # GET /solexames/new
   # GET /solexames/new.xml
   def new
-    @solexame = Solexame.new
+    @solexame = Solexame.new(data: Date.today)
     2.times { @solexame.solexameis.build }
     respond_to do |format|
       format.html # new.html.erb
@@ -45,7 +44,7 @@ class SolexamesController < ApplicationController
   # POST /solexames
   # POST /solexames.xml
   def create
-    @solexame = Solexame.new(params[:solexame])
+    @solexame = Solexame.new(solexame_params)
 
     respond_to do |format|
       if @solexame.save
@@ -64,8 +63,10 @@ class SolexamesController < ApplicationController
   def update
     @solexame = Solexame.find(params[:id])
 
+    byebug
+
     respond_to do |format|
-      if @solexame.update_attributes(params[:solexame])
+      if @solexame.update(solexame_params)
         flash[:notice] = 'Solexame was successfully updated.'
         format.html { redirect_to(@solexame) }
         format.xml  { head :ok }
@@ -91,7 +92,6 @@ class SolexamesController < ApplicationController
   private
 
   def ler_pacientes
-    debugger
     paciente_id = params['paciente']
     if paciente_id.nil?
       @pacientes = Paciente.find(:all, :limit=>2).collect { |c| [ c.nm_paciente, c.id] }
@@ -108,6 +108,10 @@ class SolexamesController < ApplicationController
 
   def ler_clinicas_laboratorios
     @clilabs = Clilab.find(:all).collect { |c| [c.nm, c.id] }
+  end
+
+  def solexame_params
+    params.require(:solexame).permit(:paciente_id, :data, :clilab_id, solexameis_attributes: [ :id, :solexame_id, :exame_id, :_destroy ])
   end
 
 end

@@ -2,10 +2,14 @@ class ViaaplicsController < ApplicationController
 
   before_action :set_viaaplic, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Home" , :root_path
+  add_breadcrumb "Via Aplic", :viaaplics_path
+
     # GET /viaaplics
   # GET /viaaplics.json
   def index
     @viaaplics = Viaaplic.all
+    add_breadcrumb "index", viaaplics_path, :title => "Volta para o index"
   end
 
   # GET /viaaplics/1

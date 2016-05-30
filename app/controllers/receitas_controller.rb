@@ -1,11 +1,11 @@
 class ReceitasController < ApplicationController
   before_filter :ler_pacientes, :only => [:new, :create, :edit, :update]
   before_filter :ler_medicamentos, :only => [:new, :create, :edit, :update]
+  before_action :set_receita, only: [:show, :edit, :update, :destroy]
 
   # GET /receitas
   # GET /receitas.xml
   def index
-    debugger
     @receitas = Receita.find(:all)
 
     respond_to do |format|
@@ -17,8 +17,6 @@ class ReceitasController < ApplicationController
   # GET /receitas/1
   # GET /receitas/1.xml
   def show
-    @receita = Receita.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @receita }
@@ -28,7 +26,7 @@ class ReceitasController < ApplicationController
   # GET /receitas/new
   # GET /receitas/new.xml
   def new
-    @receita = Receita.new
+    @receita = Receita.new(data: Date.today)
     #2.times { @receita.receitais.build }
     respond_to do |format|
       format.html # new.html.erb
@@ -38,15 +36,13 @@ class ReceitasController < ApplicationController
 
   # GET /receitas/1/edit
   def edit
-    @receita = Receita.find(params[:id])
   end
 
   # POST /receitas
   # POST /receitas.xml
   def create
-    debugger
-    @receita = Receita.new(params[:receita])
-
+    @receita = Receita.new(receita_params)
+    byebug
     respond_to do |format|
       if @receita.save
         flash[:notice] = 'Receita was successfully created.'
@@ -62,11 +58,9 @@ class ReceitasController < ApplicationController
   # PUT /receitas/1
   # PUT /receitas/1.xml
   def update
-    debbuger
-    @receita = Receita.find(params[:id])
-
+    byebug
     respond_to do |format|
-      if @receita.update_attributes(params[:receita])
+      if @receita.update(receita_params)
         flash[:notice] = 'Receita was successfully updated.'
         format.html { redirect_to(@receita) }
         format.xml  { head :ok }
@@ -80,7 +74,6 @@ class ReceitasController < ApplicationController
   # DELETE /receitas/1
   # DELETE /receitas/1.xml
   def destroy
-    @receita = Receita.find(params[:id])
     @receita.destroy
 
     respond_to do |format|
@@ -120,7 +113,6 @@ class ReceitasController < ApplicationController
   end
 
  def get_doses2
-   debugger
    @med = Medicamento.find( params[:medicamento_id], :select => 'dose' )
 #   render :inline => "<%= receitai_form.text_field :dose %>"
    render :inline => "<%= text_field :receitai, :dose, 'tt' %>"
@@ -135,7 +127,6 @@ class ReceitasController < ApplicationController
   private
 
   def ler_pacientes
-    debugger
     paciente_id = params['paciente']
     if paciente_id.nil?
       @pacientes = Paciente.find(:all, :limit=>2).collect { |c| [ c.nm_paciente, c.id] }
@@ -146,8 +137,17 @@ class ReceitasController < ApplicationController
     end
   end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_receita
+    @receita = Receita.find(params[:id])
+  end
+
   def ler_medicamentos
-    @medicamentos = Medicamento.find(:all).collect { |c| [c.descricao, c.id] }
+    @medicamentos = Medicamento.order(:descricao).collect { |c| [c.descricao, c.id] }
+  end
+
+  def receita_params
+    params.require(:receita).permit(:paciente_id, :data, receitais_attributes: [ :id, :receita_id, :medicamento_id, :dose, :qtde, :_destroy ])
   end
 
 end

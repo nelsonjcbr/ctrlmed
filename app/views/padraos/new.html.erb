@@ -1,3 +1,5 @@
-<%= render :partial => "form", :locals => { :titulo => 'Inserindo', :nome_botao => 'Gravar Novo Padrão'} %>
-
-<%= link_to 'Back', padraos_path %>
+<%- model_class = Padrao -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'Novo %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

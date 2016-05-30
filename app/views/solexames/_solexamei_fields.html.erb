@@ -1,0 +1,9 @@
+<fieldset>
+  <legend>Exames</legend>
+  <div class="bs-callout bs-callout-warning form" >
+    <%= f.select :exame_id, @exames %>
+    <%= f.input :obs %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to 'remove', '#', class: 'remove_fields btn btn-danger' %>
+  </div>
+</fieldset>

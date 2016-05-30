@@ -1,7 +1,0 @@
-<div class="solexamei">
-  <% fields_for "solexame[solexamei_attributes][]", solexamei do |solexamei_form| %>
-    <p>Exame: <%= solexamei_form.select :exame_id, @exames %>
-    <p>Obs: <%= solexamei_form.text_field :obs %>
-    <%= link_to_function "remove", "this.up('.solexamei').remove()" %>
-  <% end %>
-</div>

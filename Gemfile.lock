@@ -26,7 +26,13 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bootstrap-editable-rails (0.0.9)
+      railties (>= 3.1)
+      sass-rails
+    breadcrumbs_on_rails (2.3.1)
     builder (3.1.4)
+    byebug (5.0.0)
+      columnize (= 0.9.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -34,6 +40,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    columnize (0.9.0)
     commonjs (0.2.6)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -92,6 +99,9 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -122,12 +132,17 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     will_paginate (3.0.5)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-editable-rails
+  breadcrumbs_on_rails
+  byebug
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
@@ -137,8 +152,9 @@ DEPENDENCIES
   rails4-autocomplete (~> 1.0.7)
   sass-rails (~> 4.0.0)
   sdoc
+  simple_form
   therubyracer
   turbolinks
   twitter-bootstrap-rails
   uglifier (>= 1.3.0)
-  will_paginate (~> 3.0.5)
+  will_paginate-bootstrap (= 1.0.1)

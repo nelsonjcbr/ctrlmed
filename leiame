@@ -1,0 +1,7 @@
+Gerar layout bootstrap
+rails g scaffold Post title:string description:text
+rake db:migrate
+rails g bootstrap:themed Posts
+
+A fazer
+-Esta no trello

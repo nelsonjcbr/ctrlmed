@@ -1,22 +1,36 @@
-<h1>Lista de receitas</h1>
-
-<table>
-  <tr>
-    <th>Data</th>
-    <th>Paciente</th>
-  </tr>
-
-<% for receita in @receitas %>
-  <tr>
-    <td><%=h receita.data %></td>
-    <td><%=h receita.paciente.nm_paciente %></td>
-    <td><%= link_to 'Mostrar', receita %></td>
-    <td><%= link_to 'Editar', edit_receita_path(receita) %></td>
-    <td><%= link_to 'Deletar', receita, :confirm => 'Você tem certeza?', :method => :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = Receita -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Paciente</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for receita in @receitas %>
+    <tr>
+      <td><%=h receita.data %></td>
+      <td><%=h receita.paciente.nm_paciente %></td>
+      <td>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_receita_path(receita), :class => 'btn btn-mini' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    receita_path(receita),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-mini btn-danger' %>
+      </td> 
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <br />
 
-<%= link_to 'Nova receita', new_receita_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_receita_path,
+            :class => 'btn btn-primary' %>

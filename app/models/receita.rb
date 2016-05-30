@@ -3,11 +3,6 @@ class Receita < ActiveRecord::Base
 
   belongs_to :paciente
   has_many :receitais
-
-  def receitai_attributes=(receitai_attributes)
-    receitai_attributes.each do |attributes|
-      receitais.build(attributes)
-    end
-  end
+  accepts_nested_attributes_for :receitais, allow_destroy: true
 
 end

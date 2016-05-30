@@ -1,2 +1,0 @@
-page.insert_html :bottom,'tabela',:partial => "lista", :locals =>{:padrao =>@padrao}
-page.visual_effect :Pulsate, dom_id(@padrao)

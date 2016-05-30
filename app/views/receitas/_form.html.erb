@@ -1,27 +1,28 @@
 <h1><%= titulo %> receita</h1>
 
-<% form_for(@receita) do |f| %>
-   <%= render "shared/error_messages", :target => @receita %>  
+<%= simple_form_for @receita, html: { class: 'form-horizontal' },
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+          check_boxes: :horizontal_radio_and_checkboxes,
+          radio_buttons: :horizontal_radio_and_checkboxes,
+          file: :horizontal_file_input,
+          boolean: :horizontal_boolean
+        } do |f| %>
 
-  <p>
-    <%= f.label :data %><br />
-    <%= f.date_select :data %>
-  </p>
-  <p>
-    <%= f.label :paciente %><br />
-    <%= f.select :paciente_id, @pacientes %>
-  </p>
-  <p>
-  <div id="receitais">
-    <%= render :partial => "receitai", :collection => @receita.receitais %>
-  </div>
-    <%= add_receitais_link "Adiciona Medicamento" %>
-</p>
-<p>
-    <%= f.submit nome_botao %>
-  </p>
+  <%= f.select :paciente_id, @pacientes, label: 'Paciente' %>
+  <%= f.association :paciente  %>
+
+  <%= f.input :data, format: :default, label: 'Data da receita', html5: true, input_html: { class: 'input-large' } %>
+
+  <%= f.simple_fields_for :receitais do |builder| %>
+    <%= render 'receitai_fields', f: builder %>
+  <% end %>
+
+  <%= link_to_add_fields "Adiciona Item", f, :receitais %>
+  <br>
+  <br>
+  <%= f.submit "Gravar", :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                receitas_path, :class => 'btn' %>
 <% end %>
-<div id="padrao_doses">
-<h2>Dose Padrao: </h2>
-</div>
-<%= link_to 'Volta', @receita.paciente %>
+

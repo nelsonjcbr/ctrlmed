@@ -1,0 +1,10 @@
+<fieldset>
+  <legend>Medicamento</legend>
+  <div class="bs-callout bs-callout-warning form" >
+    <%= f.select :medicamento_id, @medicamentos, prompt: "Medicamento..." %>
+    <%= f.input :dose  %>
+    <%= f.input :qtde %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to 'remove', '#', class: 'remove_fields btn btn-danger' %>
+  </div>
+</fieldset>

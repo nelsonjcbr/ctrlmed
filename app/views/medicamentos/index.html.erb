@@ -1,24 +1,38 @@
-<h1>Listando medicamentos</h1>
-
-<table>
-  <tr>
-    <th>Descrição</th>
-    <th>Dose</th>
-    <th>Viaaplic</th>
-  </tr>
-
-<% for medicamento in @medicamentos %>
-  <tr>
-    <td><%=h medicamento.descricao %></td>
-    <td><%=h medicamento.dose %></td>
-    <td><%=h medicamento.viaaplic.descricao %></td>
-    <td><%= link_to 'Mostrar', medicamento %></td>
-    <td><%= link_to 'Deletar', edit_medicamento_path(medicamento) %></td>
-    <td><%= link_to 'Excluir', medicamento, :confirm => 'Você tem certeza?', :method => :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = Medicamento -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:descricao) %></th>
+      <th><%= model_class.human_attribute_name(:dose) %></th>
+      <th><%= model_class.human_attribute_name(:viaaplic) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @medicamentos.each do |medicamento| %>
+      <tr>
+        <td><%= link_to medicamento.id, medicamento_path(medicamento) %></td>
+        <td><%= medicamento.descricao %></td>
+        <td><%= medicamento.dose %></td>
+        <td><%= medicamento.viaaplic.descricao %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_medicamento_path(medicamento), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      medicamento_path(medicamento),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'Novo medicamento', new_medicamento_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_medicamento_path,
+            :class => 'btn btn-primary' %>

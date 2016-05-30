@@ -1,43 +1,44 @@
-<h1>Listando Padrões</h1>
-
-<table id='tabela'>
-  <tr>
-    <th>Campos</th>
-    <th>Valores Possíveis</th>
-  </tr>
-  
-  <% @padraos.each do |padrao| -%>
-      <%= render partial: "lista", locals: { padrao: padrao } %>
-  <% end -%>
-
-</table>
-
-<br />
-
-<div id="target" class="green box">
-<% remote_form_for(@padrao) do |f| %>
-    Campo: <%= f.text_field :campo %><br>
-    Valores: <%= f.text_area :valores %><br>
-    <%= f.submit "Criar" %>
-<% end %>
+<%- model_class = Padrao -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Padrões de campos'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 
-<%= link_to 'Novo padrão', new_padrao_path %>
+<div class="alert alert-info">
+  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    INFO!</strong> Aqui são definidos padrões para alguns campos da tela 
+</div>
 
-<%= link_to_function "Opacity",
-    "new Effect.Opacity('target', {to:0.5})" %>
-<%= link_to_function "Scale",
-    "new Effect.Scale('target', 200)" %>
-<%= link_to_function "Move",
-    "new Effect.Move('target', {x:50,y:10})" %>
-<%= link_to_function "Parallel",
-    "new Effect.Parallel([
-      new Effect.Move('target', {x:50,y:10}),
-      new Effect.Opacity('target', {to:0.5})
-     ])" %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:campo) %></th>
+      <th><%= model_class.human_attribute_name(:valores) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @padraos.each do |padrao| %>
+      <tr>
+        <td><%= link_to padrao.id, padrao_path(padrao) %></td>
+        <td><%= link_to padrao.campo, padrao_path(padrao) %></td>
+        <td><%= padrao.valores %></td>
+        <td><%=l padrao.created_at, :format => :default %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_padrao_path(padrao), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      padrao_path(padrao),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<% %w( Fade Appear Highlight Fold Pulsate SlideUp SlideDown
-       Shrink Grow Squish Shake DropOut SwitchOff Puff BlindUp
-       BlindDown ).each do |name| %>
-  <%= link_to_function name, "new Effect.#{name}('target')" %>
-<% end %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_padrao_path,
+            :class => 'btn btn-primary' %>

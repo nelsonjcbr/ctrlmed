@@ -8,10 +8,15 @@
   <%=h @receita.paciente.nm_paciente %>
 </p>
 <p>
-<table>
+<table class="table">
+<tr>
+  <th>Medicamento</th>
+  <th>Dose</th>
+  <th>Qtde</th>
+</tr>
 <% @receita.receitais.each do |r| %>
      <tr>
-     <td><%= r.medicamento.descricao %></td>
+     <td><%= r.medicamento.try(:descricao) %></td>
      <td><%= r.dose %></td>
      <td><%= r.qtde %></td>
      </tr>

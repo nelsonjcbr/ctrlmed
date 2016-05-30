@@ -1,21 +1,18 @@
-<fieldset>
-<legend>Vias de aplicação (<%= titulo %>)</legend>
-<div id="esquerda">
-  
-  <%= form_for(@viaaplic, html: { class: "form-horizontal", role: "form"} ) do |f| %>
-   <%= render "shared/error_messages", :target => @viaaplic %>  
-    <div class="form-group">
-      <%= f.label :descricao, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :descricao, class: "form-control" %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit nome_botao, class: "btn btn-default" %>
-      </div>
-    </div>
+<%= simple_form_for @viaaplic , html: { class: 'form-horizontal' },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  } do |f| %>
 
-  <% end %>
-</fieldset>
+    <%= f.input :descricao, :class => 'text_field', input_html: { class: 'input-xlarge'} %>
+
+
+  <div class="form-actions">
+    <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                viaaplics_path, :class => 'btn' %>
+  </div>
+<% end %>
