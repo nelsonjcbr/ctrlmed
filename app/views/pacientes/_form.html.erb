@@ -11,7 +11,9 @@
       <fieldset class='caixa'>
         <legend class='caixa'>Paciente</legend>
         <%= f.input :nm_paciente, label: 'Nome' %>
-        <%= f.input :dt_nascimento, format: :default, label: 'Data nascimento', html5: true, input_html: { class: 'input-large', :onblur => 'mostra_idade(this)' } %> 
+
+        <%= f.input :dt_nascimento, format: :default, label: 'Data nascimento', html5: true, wrapper: :small,  input_html: { :onblur => 'mostra_idade(this)' } %> 
+        
         <%= f.input :estado_civil, as: :select, collection: @estado_civis %>
         <%= f.input :endereco, label: 'Endereço' %>
         <%= f.input :cidade %>
@@ -89,12 +91,17 @@ function getIdade(dateString) {
 
 function mostra_idade(o) {
   var ida = new String;
-  var data = new Date(o.value);
+  var data = new Date($(o).val());
   ida = getIdade(data);
   ida = ' ' + ida + ' Anos'
-  $("#paciente_dt_nascimento").after(ida);
-  return
+  $(".lado").text(ida);
+  return ida
 }
 
+$(function() {
+  // Códigos jQuery a serem executados quando a página carregar e correndo o risco de conflitar com outras bibliotecas JavaScript
+  var data = $("#paciente_dt_nascimento");
+  mostra_idade(data);
+  });
 
 </script>

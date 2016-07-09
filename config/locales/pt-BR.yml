@@ -175,3 +175,18 @@ pt-BR:
         odd: "deve ser ímpar"
         even: "deve ser par"
         record_invalid: "A validação falhou: %{errors}"
+  helpers:
+    actions: "Ações"
+    links:
+      back: "Voltar"
+      cancel: "Cancelar"
+      confirm: "Você tem certeza?"
+      destroy: "Excluir"
+      new: "Novo"
+      edit: "Editar"
+      show: "Consultar"
+    titles:
+      edit: "Editar"
+      save: "Salvar"
+      new: "Novo"
+      delete: "Excluir"

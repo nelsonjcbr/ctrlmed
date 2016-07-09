@@ -10,8 +10,7 @@
         } do |f| %>
 
   <%= f.select :paciente_id, @pacientes, label: 'Paciente' %>
-  <%= f.association :paciente  %>
-
+  
   <%= f.input :data, format: :default, label: 'Data da receita', html5: true, input_html: { class: 'input-large' } %>
 
   <%= f.simple_fields_for :receitais do |builder| %>

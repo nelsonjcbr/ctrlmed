@@ -39,7 +39,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/new
   # GET /pacientes/new.xml
   def new
-    @paciente = Paciente.new
+    @paciente = Paciente.new(dt_prim_consulta: Date.today)
     add_breadcrumb "novo", pacientes_path, :title => "Volta para o index"
   end
 
